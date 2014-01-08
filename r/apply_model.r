@@ -1,5 +1,6 @@
 library(tm)
-load("utils.r")
+library(e1071)
+source("utils.r")
 
 preprocessText <- function(text){
 	text <- PlainTextDocument(text)
@@ -30,4 +31,7 @@ apply_model <- function(text){
 	colnames(dtm.mx) <- utils.escapeColnames(dtm.mx)
 	dtm <- as.data.frame(as.matrix(dtm.mx))
 	prediction <- predict(model, dtm, type="class")
+	return(prediction)
 }
+
+# con.eval("setwd('"+Rails.root.to_s+"/r'); source('apply_model.r'); apply_model('Hello my love')").to_ruby

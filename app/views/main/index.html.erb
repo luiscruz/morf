@@ -1,0 +1,11 @@
+<h1 id="title"> M or F </h1>
+<div id="description"></div>
+
+<div id="result">
+  <%= @result %>
+</div>
+
+<%= form_tag "/apply_model", method: :post do %>
+  <%= text_area_tag(:text, params[:text]) %>
+  <%= submit_tag("Guess") %>
+<% end %>
