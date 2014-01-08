@@ -12,6 +12,7 @@ class MainController < ApplicationController
   def tm_r_apply_model text
     if text
       @rserve ||= Rserve::Connection.new
+      text.gsub!(/"\n|'/, '')
       result = @rserve.eval("setwd('"+Rails.root.to_s+"/r'); source('apply_model.r'); apply_model('"+text+"')").to_ruby
       result = result["female"] || "male"
     end
