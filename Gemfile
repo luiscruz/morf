@@ -32,6 +32,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# RServe Client
+gem "rserve-client", "~> 0.3.1"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
