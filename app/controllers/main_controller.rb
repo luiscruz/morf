@@ -1,11 +1,11 @@
 class MainController < ApplicationController
-  def index
+  def home
     @result = params[:result]
   end
   
   def apply_model
     result = tm_r_apply_model params[:text]
-    redirect_to action: :index, result: result, text: params[:text]
+    redirect_to action: :home, result: result, text: params[:text]
   end
   
   protected
