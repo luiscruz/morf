@@ -1,11 +1,15 @@
 class MainController < ApplicationController
   def home
-    @result = params[:result]
+    @result = flash[:result]
+    @text = flash[:text]
   end
   
   def apply_model
-    result = tm_r_apply_model params[:text]
-    redirect_to action: :home, result: result, text: params[:text]
+    text = params[:text]
+    result = tm_r_apply_model text
+    flash[:result] = result
+    flash[:text] = text
+    redirect_to action: :home
   end
   
   protected
