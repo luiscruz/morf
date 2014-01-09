@@ -10,12 +10,18 @@ class MainController < ApplicationController
   
   protected
   def tm_r_apply_model text
+
     if text
-      @rserve ||= Rserve::Connection.new
-      text.gsub!(/"\n|'/, '')
-      result = @rserve.eval("setwd('"+Rails.root.to_s+"/r'); source('apply_model.r'); apply_model('"+text+"')").to_ruby
-      result = result["female"] || "male"
+      begin
+        @rserve ||= Rserve::Connection.new
+        text.gsub!(/"\n|'/, '')
+        result = @rserve.eval("setwd('"+Rails.root.to_s+"/r'); source('apply_model.r'); apply_model('"+text+"')").to_ruby
+        result = result["female"] || "male"
+      rescue => e
+        logger.error e.message
+        logger.error e.backtrace
+        result = "error"
+      end
     end
   end
-  
 end

@@ -6,7 +6,13 @@
 </div>
 
 <div class="container">
-<% if @result %>
+<% if @result && @result == "error" %>  
+<div id="error" class="alert alert-danger alert-dismissable">
+   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  Something went wrong! :(
+</div>
+<% end %>
+<% if @result && @result != "error" %>
 <div id="result" class="alert alert-success">
   <%= @result %>
 </div>
