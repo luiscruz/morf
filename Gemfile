@@ -42,7 +42,7 @@ end
 gem "rserve-client", "~> 0.3.1"
 
 #bootstrap
-gem 'bootstrap-sass', '~> 3.0.3.0'
+gem 'bootstrap-sass-rails', '~> 3.0.3.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
