@@ -17,7 +17,7 @@ class MainController < ApplicationController
 
     if text
       begin
-        @rserve ||= Rserve::Connection.new
+        @rserve ||= Rserve::Connection.new cmd_init: "R CMD Rserve --no-save"
         text.gsub!(/"\n|'/, '')
         result = @rserve.eval("setwd('"+Rails.root.to_s+"/r'); source('apply_model.r'); apply_model('"+text+"')").to_ruby
         result = result["1"]["female"] || "male"
