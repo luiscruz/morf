@@ -6,17 +6,23 @@
 </div>
 
 <div class="container">
-<% if @result && @result == "error" %>  
-<div id="error" class="alert alert-danger alert-dismissable">
-   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-  Something went wrong! :(
-</div>
+<% if @result %>
+  <% if @result == "male" %>
+    <div id="result" class="alert alert-success">
+      The author of this text is male.
+    </div>
+  <% elsif @result == "female" %>
+    <div id="result" class="alert alert-success">
+      The author of this text is female.
+    </div>
+  <% else %>  
+    <div id="error" class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      Something went wrong! :(
+    </div>
+  <% end %>
 <% end %>
-<% if @result && @result != "error" %>
-<div id="result" class="alert alert-success">
-  <%= @result %>
-</div>
-<% end %>
+
 <%= form_tag "/apply_model", method: :post, class: 'form-horizontal', role: "form" do %>
   <div class="form-group">
   <%= text_area_tag(:text, @text, rows: 5, class: "form-control", id: "focusedInput", placeholder: "Insert here your text...") %>
